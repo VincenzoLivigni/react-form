@@ -1,6 +1,8 @@
+import { useState } from "react"
+
 export default function Main() {
 
-    const articoli = [
+    const listaArticoli = [
         { id: 1, title: "10 ricette facili per la cena" },
         { id: 2, title: "Come preparare la pasta fresca fatta in casa" },
         { id: 3, title: "Segreti per un risotto cremoso perfetto" },
@@ -13,12 +15,31 @@ export default function Main() {
         { id: 10, title: "Trucchi per impiattare come uno chef" }
     ];
 
+    const [articoli, setArticoli] = useState("");
+
+
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        // console.log(e);
+    }
+
     return (
         <main>
-            <div className="list-container d-flex justify-content-center">
+            <div className="list-container">
+                <form onSubmit={handleSubmit} className="pt-5">
+                    <input
+                        type="text"
+                        value={articoli}
+                        placeholder="inserisci un nuovo articolo"
+                        onChange={(e) => setArticoli(e.target.value)} />
+                    <p>Aggiungi articolo: {articoli}</p>
+                    <button type="submit">invia</button>
+                </form>
+
                 <ul className="py-5">
                     {
-                        articoli.map((item) => (
+                        listaArticoli.map((item) => (
                             <li key={item.id}>{item.title}</li>
                         ))
                     }
