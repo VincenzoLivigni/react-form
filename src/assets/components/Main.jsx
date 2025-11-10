@@ -33,6 +33,11 @@ export default function Main() {
         }
     }
 
+    function handleTrash(id) {
+        const filtraArticoli = articoli.filter((item) => item.id !== id)
+        setArticoli(filtraArticoli)
+    }
+
     return (
         <main>
             <div className="list-container bg-dark">
@@ -51,7 +56,11 @@ export default function Main() {
                 <ul className="py-5">
                     {
                         articoli.map((item) => (
-                            <li key={item.id}>{item.title}</li>
+                            <li className="d-flex justify-content-between align-items-center" key={item.id}>{item.title}
+                                <button onClick={() => handleTrash(item.id)} className="btn btn-sm btn-dark">
+                                    <i className="bi bi-trash"></i>
+                                </button>
+                            </li>
                         ))
                     }
                 </ul>
