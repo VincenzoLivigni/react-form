@@ -15,31 +15,42 @@ export default function Main() {
         { id: 10, title: "Trucchi per impiattare come uno chef" }
     ];
 
-    const [articoli, setArticoli] = useState("");
+    const [articoli, setArticoli] = useState(listaArticoli);
 
+    const [nuovoArticolo, setNuovoArticolo] = useState("")
 
 
     function handleSubmit(e) {
         e.preventDefault();
-        // console.log(e);
+        if (nuovoArticolo.length > 0) {
+            const nuovo = {
+                id: articoli.length + 1,
+                title: nuovoArticolo
+            };
+            console.log(nuovoArticolo);
+            const listaAggiornata = [...articoli, nuovo]
+            setArticoli(listaAggiornata)
+        }
     }
 
     return (
         <main>
-            <div className="list-container">
-                <form onSubmit={handleSubmit} className="pt-5">
-                    <input
-                        type="text"
-                        value={articoli}
-                        placeholder="inserisci un nuovo articolo"
-                        onChange={(e) => setArticoli(e.target.value)} />
-                    <p>Aggiungi articolo: {articoli}</p>
-                    <button type="submit">invia</button>
-                </form>
+            <div className="list-container bg-dark">
+                <div className="d-flex pt-5 g-3 w-100 justify-content-center">
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            value={nuovoArticolo}
+                            placeholder="inserisci un nuovo articolo"
+                            onChange={(e) => setNuovoArticolo(e.target.value)} />
+                        {/*<p>Aggiungi articolo: {nuovoArticolo}</p>*/}
+                        <button type="submit">Aggiungi</button>
+                    </form>
+                </div>
 
                 <ul className="py-5">
                     {
-                        listaArticoli.map((item) => (
+                        articoli.map((item) => (
                             <li key={item.id}>{item.title}</li>
                         ))
                     }
