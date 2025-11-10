@@ -1,0 +1,9 @@
+@import url("bootstrap");
+
+li {
+  width: 500px;
+  list-style-type: none;
+  margin-bottom: 10px;
+  border: solid 2px orange;
+  padding: 10px;
+}

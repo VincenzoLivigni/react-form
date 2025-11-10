@@ -1,7 +1,7 @@
 export default function Header() {
     return (
-        <header>
-            <h1>Titolo</h1>
+        <header className="bg-warning py-3 text-center">
+            <h1>React Blog Form</h1>
         </header>
     )
 }
